@@ -3,7 +3,6 @@ import axios from "../api/axios";
 
 export default function StudentRow(props) {
   const [edit, setEdit] = useState();
-  const rollRef = useRef();
   const nameRef = useRef();
   function editHandler() {
     setEdit(!edit);
@@ -17,10 +16,9 @@ export default function StudentRow(props) {
   }
 
   async function saveHandler() {
-    const enteredRoll = rollRef.current.value;
     const enteredName = nameRef.current.value;
     const data = {
-      rollNo: enteredRoll,
+      rollNo: props.rollNo,
       name: enteredName,
     };
     await axios.put("/api/v1/student", data).then(async (res) => {
@@ -58,12 +56,7 @@ export default function StudentRow(props) {
   const editElement = (
     <>
       <td className="w-25">
-        <input
-          type="text"
-          className="form-control"
-          defaultValue={props.rollNo}
-          ref={rollRef}
-        />
+      <span>{props.rollNo}</span>
       </td>
       <td className="w-25">
         <input

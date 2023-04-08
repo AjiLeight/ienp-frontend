@@ -78,7 +78,6 @@ export default function StudentBody() {
             Increase Year
           </button>
         )}
-        ;
       </div>
     </>
   );
